@@ -1,0 +1,80 @@
+<div [formGroup]="form">
+  <label class="block">
+    <span class="block text-sm font-medium text-slate-700">Imię</span>
+    <input
+      placeholder="Imię"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.name"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.name.hasError('required') &&
+        (form.controls.name.dirty || form.controls.name.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+    <p
+      *ngIf="
+        form.controls.name.hasError('maxlength') &&
+        (form.controls.name.dirty || form.controls.name.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      Maksymalna ilość znaków to
+      {{ form.controls.name.getError("maxlength").requiredLength }}
+    </p>
+  </label>
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700">Nazwisko</span>
+    <input
+      placeholder="Nazwisko"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.surname"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.surname.hasError('required') &&
+        (form.controls.surname.dirty || form.controls.surname.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+    <p
+      *ngIf="
+        form.controls.surname.hasError('maxlength') &&
+        (form.controls.surname.dirty || form.controls.surname.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      Maksymalna ilość znaków to
+      {{ form.controls.surname.getError("maxlength").requiredLength }}
+    </p>
+  </label>
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700"
+      >Rola reprezentanta</span
+    >
+    <p-dropdown
+      class="w-full"
+      [style]="{ minWidth: '100%' }"
+      [options]="representantRole"
+      [formControl]="form.controls.role"
+    ></p-dropdown>
+    <p
+      *ngIf="
+        form.controls.role.hasError('required') &&
+        (form.controls.role.dirty || form.controls.role.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+  </label>
+</div>
