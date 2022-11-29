@@ -1,0 +1,15 @@
+<app-company-representant
+  (formReady)="addChildForm($event)"
+></app-company-representant>
+<!-- <ng-container *ngFor="let item of form.controls; let i = index">
+  <app-company-representant
+    (formReady)="addChildForm($event)"
+  ></app-company-representant>
+</ng-container> -->
+
+<button
+  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  (click)="addNewForm()"
+>
+  Nowy Form
+</button>

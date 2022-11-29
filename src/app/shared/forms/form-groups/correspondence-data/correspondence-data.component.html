@@ -1,0 +1,181 @@
+<div [formGroup]="form" [classList]="classList">
+  <h2 class="text-xl font-bold text-blue-900 mb-2">{{ title }}</h2>
+  <label class="block">
+    <span class="block text-sm font-medium text-slate-700">Ulica</span>
+    <input
+      placeholder="Ulica"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.street"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.street.hasError('required') &&
+        (form.controls.street.dirty || form.controls.street.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+    <p
+      *ngIf="
+        form.controls.street.hasError('maxlength') &&
+        (form.controls.street.dirty || form.controls.street.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      Maksymalna ilość znaków to
+      {{ form.controls.street.getError("maxlength").requiredLength }}
+    </p>
+  </label>
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700">Numer domu</span>
+    <input
+      placeholder="Numer domu"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.streetNo"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.streetNo.hasError('required') &&
+        (form.controls.streetNo.dirty || form.controls.streetNo.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+    <p
+      *ngIf="
+        form.controls.streetNo.hasError('maxlength') &&
+        (form.controls.streetNo.dirty || form.controls.streetNo.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      Maksymalna ilość znaków to
+      {{ form.controls.streetNo.getError("maxlength").requiredLength }}
+    </p>
+  </label>
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700"
+      >Numer mieszkania</span
+    >
+    <input
+      placeholder="Numer mieszkania"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.localNo"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.localNo.hasError('maxlength') &&
+        (form.controls.localNo.dirty || form.controls.localNo.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      Maksymalna ilość znaków to
+      {{ form.controls.localNo.getError("maxlength").requiredLength }}
+    </p>
+  </label>
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700">Kod pocztowy</span>
+    <input
+      placeholder="Kod pocztowy"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.postalCode"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.postalCode.hasError('required') &&
+        (form.controls.postalCode.dirty || form.controls.postalCode.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+  </label>
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700">Miasto</span>
+    <input
+      placeholder="Miasto"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.city"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.city.hasError('required') &&
+        (form.controls.city.dirty || form.controls.city.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+    <p
+      *ngIf="
+        form.controls.city.hasError('maxlength') &&
+        (form.controls.city.dirty || form.controls.city.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      Maksymalna ilość znaków to
+      {{ form.controls.city.getError("maxlength").requiredLength }}
+    </p>
+  </label>
+  <!-- Tutaj dropdown z krajem -->
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700"
+      >Telefon kontaktowy</span
+    >
+    <input
+      placeholder="Telefon kontaktowy"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.phone"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.phone.hasError('required') &&
+        (form.controls.phone.dirty || form.controls.phone.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+  </label>
+  <label class="block mt-2">
+    <span class="block text-sm font-medium text-slate-700">E-mail</span>
+    <input
+      placeholder="E-mail"
+      class="w-full"
+      type="text"
+      [formControl]="form.controls.email"
+      pInputText
+    />
+    <p
+      *ngIf="
+        form.controls.email.hasError('required') &&
+        (form.controls.email.dirty || form.controls.email.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      To pole jest wymagane
+    </p>
+    <p
+      *ngIf="
+        form.controls.email.hasError('email') &&
+        (form.controls.email.dirty || form.controls.email.touched)
+      "
+      class="text-red-600 text-sm"
+    >
+      Adres email jest niepoprawny
+    </p>
+  </label>
+</div>
