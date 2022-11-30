@@ -21,7 +21,7 @@ interface RepresentantForm {
 export class CompanyRepresentantComponent {
   form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.maxLength(150)]],
-    surname: ['', Validators.required, Validators.maxLength(150)],
+    surname: ['', [Validators.required, Validators.maxLength(150)]],
     role: ['', [Validators.required]],
   });
   @Output() formReady = of(this.form);

@@ -19,7 +19,7 @@ export class AppComponent {
   form = this.fb.group<CompanyForm>({});
 
   constructor(private fb: FormBuilder) {
-    setTimeout(() => console.log(this.form), 15000);
+    // setTimeout(() => console.log(this.form), 15000);
   }
 
   addChildForm<K extends keyof CompanyForm>(
