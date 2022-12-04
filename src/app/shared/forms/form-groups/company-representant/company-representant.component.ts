@@ -50,10 +50,6 @@ export class CompanyRepresentantComponent {
   constructor(private fb: FormBuilder) { }
 
   createNewPersonForm(): FormGroup {
-    return this.fb.nonNullable.group({
-      name: ['', [Validators.required, Validators.maxLength(150)]],
-      surname: ['', Validators.required, Validators.maxLength(150)],
-      role: ['', [Validators.required]],
-    });
+    return this.form;
   }
 }

@@ -26,8 +26,10 @@ export class CompanyRepresentantFormArrayComponent {
     setInterval(() => console.log(this.form), 10000);
 
     this.form.valueChanges.pipe(distinctUntilChanged(), map((values) => values.map((_, idx) => idx))).subscribe((groups) => {
+      console.log(groups);
       this.groups = groups;
-    })
+    });
+
   }
 
   addChildForm(group: any) {
@@ -36,5 +38,6 @@ export class CompanyRepresentantFormArrayComponent {
 
   addRepresentant(): void {
     this.groups.push(this.groups.length);
+    this.addChildForm(this.companyRepresentant?.createNewPersonForm());
   }
 }

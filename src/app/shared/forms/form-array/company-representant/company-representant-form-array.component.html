@@ -2,6 +2,10 @@
   (formReady)="addChildForm($event)"
 ></app-company-representant>
 
+<ng-container *ngFor="let item of groups; let index = index">
+  <app-company-representant></app-company-representant>
+</ng-container>
+
 <button
   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
   (click)="addRepresentant()"
