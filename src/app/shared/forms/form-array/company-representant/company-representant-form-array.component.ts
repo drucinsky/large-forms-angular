@@ -2,7 +2,7 @@ import { Component, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompanyRepresentantComponent } from '../../form-groups/company-representant/company-representant.component';
-import { ObservedValueOf, of } from 'rxjs';
+import { distinctUntilChanged, map, ObservedValueOf, of } from 'rxjs';
 
 interface RepresentantForm {
   representative: ObservedValueOf<CompanyRepresentantComponent["formReady"]>;
@@ -15,37 +15,26 @@ interface RepresentantForm {
   templateUrl: './company-representant-form-array.component.html',
 })
 export class CompanyRepresentantFormArrayComponent {
-  form = this.fb.group({
-    representatives: this.fb.array([])
-  });
-
-  @Output() formReady = of(this.form);
+  form = this.fb.array<RepresentantForm>([]);
   @ViewChild(CompanyRepresentantComponent, { static: true })
   companyRepresentant!: CompanyRepresentantComponent;
 
+  @Output() formReady = of(this.form);
+  groups: number[] = [];
+
   constructor(private fb: FormBuilder) {
     setInterval(() => console.log(this.form), 10000);
+
+    this.form.valueChanges.pipe(distinctUntilChanged(), map((values) => values.map((_, idx) => idx))).subscribe((groups) => {
+      this.groups = groups;
+    })
   }
 
-  get representatives(): FormArray {
-    return this.form.controls.representatives;
-  }
-
-  // TODO: Dont know how typed this function
   addChildForm(group: any) {
-    console.log(group)
-    this.representatives.push(group);
+    this.form.push(group);
   }
 
   addRepresentant(): void {
-    console.log(this.companyRepresentant);
-    const form: FormGroup | undefined = this.companyRepresentant.createNewPersonForm();
-    console.log(form);
-    console.log(this.representatives);
-    this.representatives.push(form);
-  }
-
-  removeRepresentant(representantIndex: number) {
-    this.representatives.removeAt(representantIndex);
+    this.groups.push(this.groups.length);
   }
 }
